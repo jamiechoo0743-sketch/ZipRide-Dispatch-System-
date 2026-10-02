@@ -1,0 +1,60 @@
+/* 
+ * Graph
+ * This class represents the city road network for the ZipRide Dispatch System.
+ * It uses an adjacency list to store locations and weighted undirected roads.
+ */
+
+public class Graph
+{
+	private String[] locations;
+	private Graph[][] adjacencList;
+	private int[] edgeCounts;
+	private int locationCount;
+	private int maxLocations;
+
+	// Constructor
+	public Graph(int MaxLocations)
+	{
+		this.maxLocations = MaxLocations;
+		this.locations = new String[MaxLocations];
+		this.adjacencylist = new GraphEdge[MaxLocations][MaxLocations];
+		this.edgeCounts = new int[MaxLocations];
+		this.locationCount = 0;
+	}
+
+	// addLocation
+	// add a new location into the graph
+	public void addLocation(String location)
+	{
+		if(location == null || location.equals(""))
+		{
+			// check fotr null or empty location name
+			System.out.println("Invalid location name. ");
+		}
+		
+		else if(findLocationIndex(location) != -1)
+		{
+			// prevent duplicate locations
+			System.out.println(location + " already exists.");
+		}
+
+		else if(locationCount >= maxLocations)
+		{
+			// ensure graph does not exceed maximum size
+			System.out.println("Graph is full. Cannot add more locations.");
+		}
+
+		else 
+		{
+			// insert new location into locations array
+			location[locationCount] = location;
+
+			// initialise edge count for the new location
+			edgeCounts[lcoationCount] = 0;
+
+			// increase total location count 
+			locationCount++;
+
+			System.out.println("Location added: " + location);
+		}
+	}
